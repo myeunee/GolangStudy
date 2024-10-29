@@ -1,4 +1,4 @@
-module github.com/budougumi0617/go_todo_app
+module github.com/myeunee/GolangStudy
 
 go 1.23.1
 
