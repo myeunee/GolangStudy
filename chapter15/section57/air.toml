@@ -1,0 +1,32 @@
+# air.toml
+root = "/app"  # 컨테이너 내에서의 /app 디렉토리를 루트로 설정
+tmp_dir = "tmp"
+
+[build]
+# main.go 파일을 정확히 빌드하도록 지정
+cmd = "go build -o ./tmp/main ./chapter14/section56/main.go"
+bin = "tmp/main"
+full_bin = "./tmp/main 80"
+
+include_ext = ["go", "tpl", "tmpl", "html"]
+exclude_dir = ["assets", "tmp", "vendor"]
+exclude_regex = ["_test.go"]
+exclude_unchanged = true
+follow_symlink = true
+log = "air.log"
+delay = 1000
+stop_on_error = true
+send_interrupt = false
+kill_delay = 500
+
+[log]
+time = false
+
+[color]
+main = "magenta"
+watcher = "cyan"
+build = "yellow"
+runner = "green"
+
+[misc]
+clean_on_exit = true
