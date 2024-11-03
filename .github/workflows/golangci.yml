@@ -12,9 +12,11 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
 
-      - name: Run golangci-lint
-        run: |
-          cd chapter15/section57
-          golangci-lint run --config=../../.golangci.yml ./...
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run golangci-lint with reviewdog
+        uses: reviewdog/action-golangci-lint@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          golangci_lint_flags: "--config=./.golangci.yml ./chapter15/section57/..."
+          fail_on_error: true
+          reporter: "github-pr-review"
+          install: true  # golangci-lint를 자동으로 설치
