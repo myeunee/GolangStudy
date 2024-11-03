@@ -9,13 +9,14 @@ jobs:
     name: golangci-lint
     runs-on: ubuntu-latest
     steps:
-      - name: Check out code into the Go module directory
+      - name: Check out code
         uses: actions/checkout@v3
-      - name: golangci-lint
+
+      - name: Run golangci-lint with reviewdog
         uses: reviewdog/action-golangci-lint@v2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           golangci_lint_flags: "--config=../../.golangci.yml ./..."
           fail_on_error: true
           reporter: "github-pr-review"
-        working-directory: chapter15/section57  # golangci-lint 실행 디렉터리 설정
+          workdir: "chapter15/section57"
