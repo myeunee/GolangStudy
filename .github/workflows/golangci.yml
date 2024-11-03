@@ -11,7 +11,9 @@ jobs:
     steps:
       - name: Check out code into the Go module directory
         uses: actions/checkout@v3
-      - name: golangci-lint
+        working-directory: chapter15/section57
+        
+      - name: Run golangci-lint
         uses: reviewdog/action-golangci-lint@v2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
