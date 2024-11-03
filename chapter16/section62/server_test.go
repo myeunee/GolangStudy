@@ -29,7 +29,7 @@ func TestServer_Run(t *testing.T) {
 
 	in := "message"
 	url := fmt.Sprintf("http://%s/%s", l.Addr().String(), in)
-	// // 어떤 포트로 리슨하고 있는지 확인
+	// 어떤 포트로 리슨하고 있는지 확인
 	t.Logf("try request to %q", url)
 	rsp, err := http.Get(url)
 	if err != nil {
