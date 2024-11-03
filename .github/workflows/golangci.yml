@@ -18,4 +18,4 @@ jobs:
           golangci_lint_flags: "--config=../../.golangci.yml ./..."
           fail_on_error: true
           reporter: "github-pr-review"
-        working-directory: chapter15/section57  # golangci-lint 실행 디렉터리 설정
+        working-directory: chapter15/section57  # golangci-lint 실행 디렉터리 설정 
