@@ -12,6 +12,6 @@ jobs:
       with:
         go-version: '>=1.18'
     - uses: actions/checkout@v3
-    - run: go test ./... -coverprofile=coverage.out
+    - run: cd section57 && go test ./... -coverprofile=coverage.out  # section57로 이동하여 테스트 실행
     - name: report coverage
       uses: k1LoW/octocov-action@v0
