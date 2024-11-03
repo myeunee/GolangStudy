@@ -1,5 +1,6 @@
 # Build stage
-FROM golang:1.18.2-bullseye as deploy-builder
+# 최신 버전으로 수정 ******
+FROM golang:1.22-bullseye as deploy-builder
 
 WORKDIR /app
 
@@ -7,17 +8,16 @@ WORKDIR /app
 COPY go.mod go.sum ./
 RUN go mod download
 
-# 애플리케이션 소스 파일 복사, main만 복사
-COPY chapter14/section56/main.go ./chapter14/section56/
-
+COPY . .
 # 바이너리 빌드
-RUN go build -o app ./chapter14/section56/main.go
+RUN go build -trimpath -ldflags "-w -s" -o app
 
 #--------------------------------
 # Deployment stage
+
 FROM debian:bullseye-slim as deploy
 
-WORKDIR /app
+RUN apt-get update
 
 # 빌드된 바이너리를 복사
 COPY --from=deploy-builder /app/app .
@@ -27,9 +27,9 @@ CMD ["./app"]
 
 #--------------------------------
 # Development stage with Air for live reloading
-FROM golang:1.23 as dev
 
+# ******** 최신 버전으로 수정 ***********
+FROM golang:1.23.1 as dev
 WORKDIR /app
-COPY --from=deploy-builder /app .
 RUN go install github.com/air-verse/air@latest
 CMD ["air"]

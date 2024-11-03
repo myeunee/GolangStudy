@@ -3,11 +3,9 @@ services:
   app:
     image: gotodo
     build:
-      context: ../../
-      dockerfile: chapter15/section57/Dockerfile
       args:
         - target=dev
     volumes:
-      - ../../:/app    # 현재 디렉터리를 /app에 마운트
+      - .:/app
     ports:
       - "18000:80"
