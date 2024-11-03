@@ -1,6 +1,6 @@
 # Build stage
 # 최신 버전으로 수정 ******
-FROM golang:1.22-bullseye as deploy-builder
+FROM golang:1.23.1 AS deploy-builder
 
 WORKDIR /app
 
