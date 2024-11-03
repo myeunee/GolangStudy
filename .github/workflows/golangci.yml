@@ -11,9 +11,10 @@ jobs:
     steps:
       - name: Check out code into the Go module directory
         uses: actions/checkout@v3
-      - name: Run golangci-lint with reviewdog
-        run: |
-          cd chapter15/section57
-          golangci-lint run --out-format line-number --config=../../.golangci.yml ./... | reviewdog -f=golangci-lint -name="golangci-lint" -reporter=github-pr-review -level=error
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: golangci-lint
+        uses: reviewdog/action-golangci-lint@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          golangci_lint_flags: "--config=./.golangci.yml ./chapter15/section57/..."
+          fail_on_error: true
+          reporter: "github-pr-review"
