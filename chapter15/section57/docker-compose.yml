@@ -3,8 +3,9 @@ services:
   app:
     image: gotodo
     build:
+      context: . # 빌드 컨텍스트 지정 ****
       args:
-        - target=dev
+        target: dev
     volumes:
       - .:/app
     ports:
