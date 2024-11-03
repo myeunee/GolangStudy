@@ -1,6 +1,6 @@
 coverage:
   paths:
-    - coverage.out
+    - chapter15/section57/coverage.out  # 정확한 경로로 설정
 codeToTestRatio:
   code:
     - '**/*.go'
