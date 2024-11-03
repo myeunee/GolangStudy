@@ -14,10 +14,11 @@ RUN go build -trimpath -ldflags "-w -s" -o app
 
 #--------------------------------
 # Deployment stage
+# 최신 GLIBC 버전을 사용하기 위해 우분투로 교체
 
-FROM debian:bullseye-slim as deploy
+FROM ubuntu:latest as deploy
 
-RUN apt-get update
+RUN apt-get update && apt-get install -y libgcc-s1
 
 # 빌드된 바이너리를 복사
 COPY --from=deploy-builder /app/app .

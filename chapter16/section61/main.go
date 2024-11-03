@@ -24,8 +24,8 @@ func main() {
 }
 
 func run(ctx context.Context) error {
-	ctx, stop := signal.NotifyContext(ctx, os.Interrupt, syscall.SIGTERM)
-	defer stop()
+	ctx, stop := signal.NotifyContext(ctx, os.Interrupt, syscall.SIGTERM) // 추가
+	defer stop()                                                          // 추가
 	cfg, err := config.New()
 	if err != nil {
 		return err
@@ -40,8 +40,8 @@ func run(ctx context.Context) error {
 		// 인수로 받은 net.Listener를 이용 -> Addr 필드 지정 X
 		Handler: http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			// 명령줄에서 테스트하기 위한 로직
-			time.Sleep(5 * time.Second)
-			fmt.Fprintf(w, "Hello, %s!", r.URL.Path[1:])
+			time.Sleep(5 * time.Second)                  // 추가
+			fmt.Fprintf(w, "Hello, %s!", r.URL.Path[1:]) // 추가
 		}),
 	}
 	eg, ctx := errgroup.WithContext(ctx)
