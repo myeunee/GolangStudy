@@ -19,7 +19,7 @@ services:
       - "18000:8080"
   todo-db:
     image: mysql:8.0.29
-    platform: linux/amd64
+    platform: linux/x86_64
     container_name: todo-db
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
