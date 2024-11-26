@@ -19,7 +19,7 @@ var _ ListTasksService = &ListTasksServiceMock{}
 //
 //		// make and configure a mocked ListTasksService
 //		mockedListTasksService := &ListTasksServiceMock{
-//			ListTasksFunc: func(ctx context.Context) (entity.Task, error) {
+//			ListTasksFunc: func(ctx context.Context) (entity.Tasks, error) {
 //				panic("mock out the ListTasks method")
 //			},
 //		}
@@ -30,7 +30,7 @@ var _ ListTasksService = &ListTasksServiceMock{}
 //	}
 type ListTasksServiceMock struct {
 	// ListTasksFunc mocks the ListTasks method.
-	ListTasksFunc func(ctx context.Context) (entity.Task, error)
+	ListTasksFunc func(ctx context.Context) (entity.Tasks, error)
 
 	// calls tracks calls to the methods.
 	calls struct {
@@ -44,7 +44,7 @@ type ListTasksServiceMock struct {
 }
 
 // ListTasks calls ListTasksFunc.
-func (mock *ListTasksServiceMock) ListTasks(ctx context.Context) (entity.Task, error) {
+func (mock *ListTasksServiceMock) ListTasks(ctx context.Context) (entity.Tasks, error) {
 	if mock.ListTasksFunc == nil {
 		panic("ListTasksServiceMock.ListTasksFunc: method is nil but ListTasksService.ListTasks was just called")
 	}
